@@ -1,0 +1,57 @@
+---
+import { Image } from "astro:assets";
+import ContentSection from "~/components/content-section.astro";
+import type { FeatureItem } from "~/types";
+import Search from "~/assets/search.svg";
+import Document from "~/assets/document.svg";
+import Video from "~/assets/video.svg";
+import Contact from "~/assets/contact.svg";
+
+const features: Array<FeatureItem> = [
+  {
+    title: "1. 제품 선택",
+    description:
+      "고객사 이미지, 광고의 성격을 고려하여 나눔할 제품 유형을 선택합니다.",
+    icon: Search,
+  },
+  {
+    title: "2. AR 광고 컨텐츠 제작",
+    description: "제품의 QR코드에 들어갈 AR 광고 컨텐츠를 제작합니다.",
+    icon: Video,
+  },
+  {
+    title: "3. 제품 생산",
+    description: "제품 수량을 조율하여 제품을 생산합니다.",
+    icon: Document,
+  },
+  {
+    title: "4. 제품 나눔",
+    description:
+      "고객사, 광고 영상, 제품 특성에 맞는 최적의 장소와 시간대를 고려하여 온더하우스 직원들이 제품나눔을 진행합니다. ",
+    icon: Contact,
+  },
+];
+---
+
+<ContentSection title="광고 프로세스" id="process">
+  <Fragment slot="lead">
+    아무도 안 받는 종이 전단지 대신 온더하우스의 무료 나눔 제품들을 사용하여
+    나만의 멋진 <span class="text-primary">AR전단지</span>를 배포해 보세요.
+  </Fragment>
+  <ul class="grid max-w-6xl grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+    {
+      features.map(({ title, description, icon }) => (
+        <li class="flex flex-col items-center gap-4 border border-default bg-offset p-6">
+          <Image
+            src={icon as ImageMetadata}
+            width="50"
+            height="50"
+            alt="프로세스 아이콘"
+          />
+          <p class="text-center font-extrabold text-xl">{title}</p>
+          <p class="text-center text-offset text-sm">{description}</p>
+        </li>
+      ))
+    }
+  </ul>
+</ContentSection>
