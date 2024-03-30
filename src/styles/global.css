@@ -11,43 +11,6 @@ a,
   @apply bg-gradient-to-br from-indigo-500 via-fuchsia-500 to-pink-500;
 }
 
-/*
-  Based on TailwindCSS recommendations,
-  consider using classes instead of the `@apply` directive
-  @see https://tailwindcss.com/docs/reusing-styles#avoiding-premature-abstraction
-*/
-.form {
-  @apply relative flex max-w-[350px] flex-col gap-2.5 rounded-[20px] border border-solid border-[#333] bg-[#1a1a1a] p-5 text-white;
-}
-
-.flex-box {
-  @apply flex w-full gap-1.5;
-}
-.form label {
-  @apply relative text-xs;
-}
-.form label .input {
-  @apply w-full rounded-[10px] border border-solid border-[rgba(105,105,105,0.397)] bg-[#333]  pb-[05px] pl-2.5 pr-[05px] pt-5 text-white;
-  outline: 0;
-}
-.form label .input + span {
-  @apply absolute left-2.5 top-0 cursor-text text-[0.9em] transition-[0.3s] duration-[ease];
-}
-.form label .input:placeholder-shown + span {
-  @apply top-[12.5px] text-[0.9em];
-}
-.form label .input:focus + span,
-.form label .input:valid + span {
-  @apply top-0 font-medium text-[0.9em] text-primary;
-}
-.input {
-  @apply text-[medium];
-}
-.submit {
-  @apply rounded-[10px] border-[none] bg-[#00bfff] p-2.5 text-white text-base hover:bg-[#00bfff96];
-  outline: none;
-  transform: 0.3s ease;
-}
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
