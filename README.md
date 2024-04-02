@@ -1,3 +1,3 @@
 # ONTHEHOUSE
 
-## We give everyday.
+## We give today.
