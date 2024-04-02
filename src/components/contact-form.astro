@@ -12,13 +12,13 @@ import ContentSection from "~/components/content-section.astro";
     </p>
   </Fragment>
   <div class="form-container">
-    <form class="form" novalidate>
+    <form class="form" id="contact-form">
       <div class="form-group">
-        <label for="company_name">회사명</label>
+        <label for="companyName">회사명</label>
         <input
           required=""
-          name="company_name"
-          id="company_name"
+          name="companyName"
+          id="companyName"
           type="text"
           placeholder="회사명을 적어주세요."
         />
@@ -34,23 +34,23 @@ import ContentSection from "~/components/content-section.astro";
         />
       </div>
       <div class="form-group">
-        <label for="product">나눔 제품</label>
+        <label for="productCategory">나눔 제품</label>
         <input
           required=""
-          name="product"
-          id="product"
+          name="productCategory"
+          id="productCategory"
           type="text"
           placeholder="물, 물티슈 혹은 원하는 나눔 제품을 적어주세요."
         />
       </div>
       <div class="form-group">
-        <label for="content">내용</label>
+        <label for="description">내용</label>
         <textarea
           required=""
           cols="40"
           rows="10"
-          id="content"
-          name="content"
+          id="description"
+          name="description"
           placeholder="문의 내용 또는 원하는 광고 내용을 적어주세요. \n원활한 소통을 위해 광고 예산, 홍보를 하고자 하는 제품을 설명해주시면 더욱 좋습니다."
         ></textarea>
       </div>
@@ -60,6 +60,33 @@ import ContentSection from "~/components/content-section.astro";
     </form>
   </div>
 </ContentSection>
+
+<script>
+  const form = document.getElementById("contact-form");
+  if (form instanceof HTMLFormElement) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+      try {
+        const response = await fetch(import.meta.env.PUBLIC_CONTACT_FORM_URL, {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        await response.json();
+        alert("문의가 제출되었어요. 빠른 시간 내에 답변드릴게요!"); // 성공 메시지 표시
+      } catch (error) {
+        console.log(error);
+        alert(
+          "알 수 없는 이유로 제출에 실패했습니다. 잠시 후에 다시 시도해주세요.", // 실패 메세지
+        );
+      }
+    });
+  }
+</script>
 
 <style>
   .form-container {
