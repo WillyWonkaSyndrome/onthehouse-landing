@@ -19,8 +19,8 @@ const { title, id } = Astro.props;
       {title}
     </h2>
   </div>
-  <p class="text-md max-w-[38rem] text-center font-extrabold sm:text-2xl">
+  <div class="text-md max-w-[38rem] text-center font-extrabold sm:text-2xl">
     <slot name="lead" />
-  </p>
+  </div>
   <slot />
 </section>
